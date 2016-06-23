@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [[ $# > 0 ]]; then
+   input=${1//[[:space:]]/}
+else
+    input="tacocat"
+fi
+
+input_length=${#input}
+loop=$(($input_length/2))
+
+for ((i=0; i<loop; ++i)); do
+    if [[ ${input:$i:1} != ${input:$(($input_length-$i-1)):1} ]]; then
+        echo "$input is not a palindrome"
+        exit
+    fi
+done
+
+echo "$input is a palindrome"
